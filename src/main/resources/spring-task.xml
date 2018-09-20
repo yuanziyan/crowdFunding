@@ -9,7 +9,8 @@
     <task:scheduler id="taskScheduler" pool-size="100"/>
 
     <task:scheduled-tasks scheduler="taskScheduler">
-        <task:scheduled ref="taskDemo" method="hello" cron="* * * * * ?"/>
-        <task:scheduled ref="taskDemo" method="world" cron="* * * * * ?"/>
+<!--        <task:scheduled ref="taskDemo" method="hello" cron="* * * * * ?"/>
+        <task:scheduled ref="taskDemo" method="world" cron="* * * * * ?"/>-->
+        <task:scheduled ref="machineCheckTask" method="realCheck" cron="1/1 * * * * ?"></task:scheduled>
     </task:scheduled-tasks>
 </beans>

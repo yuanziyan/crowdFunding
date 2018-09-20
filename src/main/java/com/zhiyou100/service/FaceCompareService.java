@@ -1,6 +1,7 @@
 package com.zhiyou100.service;
 
 import com.google.gson.Gson;
+import com.zhiyou100.entity.Body;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -52,9 +53,27 @@ import javax.crypto.Mac;
 public class FaceCompareService {
 
 
-    public boolean compare(String url1,String url2){
+    public boolean compare(String url1,String url2)  {
+        String ak_id = "LTAIkWvv20EHENlC"; //用户ak
+        String ak_secret = "g6eBP6UujJWKRUnJ9EuwXX3gTZk6ah"; // 用户ak_secret
+        String url = "https://dtplus-cn-shanghai.data.aliyuncs.com/face/verify";
+        String body="{\"type\":0,\"image_url_1\":\""+url1+"\",\"image_url_2\":\""+url2+"\"}";
 
-        return true;
+        String s = null;
+        try {
+            s = sendPost(url, body, ak_id, ak_secret);
+        } catch (Exception e) {
+            return false;
+        }
+        Gson gson = new Gson();
+        Body body1 = gson.fromJson(s, Body.class);
+        String confidence = body1.getConfidence();
+        double realConfidence= Double.parseDouble(confidence);
+        if (realConfidence>10){
+            return true;
+        }else {
+            return false;
+        }
     }
     /*
      * 计算MD5+BASE64
@@ -233,7 +252,7 @@ public class FaceCompareService {
         }
         return result;
     }
-    public static void main(String[] args) throws Exception {
+   /* public static void main(String[] args) throws Exception {
         // 发送POST请求示例
         String ak_id = "LTAIyrDJ8IbGvsln"; //用户ak
         String ak_secret = "hnSMoKj41dhGZd64WVmXmN3G3Iv2wc"; // 用户ak_secret
@@ -241,6 +260,6 @@ public class FaceCompareService {
         String body = "{\"type\":0,\"image_url_1\":\"https://crowdfundingweb.oss-cn-beijing.aliyuncs.com/cxc1.png\",\"image_url_2\":\"https://crowdfundingweb.oss-cn-beijing.aliyuncs.com/f55ea5f9-047c-4d53-9abd-83f93d0643a7.jpeg\"}";
         System.out.println("response body:" + sendPost(url, body, ak_id, ak_secret));
 
-    }
+    }*/
 }
 

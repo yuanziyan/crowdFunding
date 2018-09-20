@@ -16,8 +16,6 @@
             <mvc:mapping path="/admin/*.do"/>
             <bean class="com.zhiyou100.interceptor.PermissionInterceptor"></bean>
         </mvc:interceptor>-->
-
-
     </mvc:interceptors>
     <!--配置文件上传下载-->
     <bean id="multipartResolver"
@@ -29,5 +27,4 @@
             <value>UTF-8</value>
         </property>
     </bean>
-
 </beans>

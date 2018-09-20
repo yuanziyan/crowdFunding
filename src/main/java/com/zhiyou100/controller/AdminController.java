@@ -27,7 +27,6 @@ import java.util.List;
 public class AdminController {
     @Autowired
     UserService userService;
-
     @Autowired
     RealCheckService realCheckService;
     @Autowired
@@ -39,6 +38,7 @@ public class AdminController {
     public void manualRealCheck(String result,int realCheckId) throws CrowdFundingException {
         realCheckService.manualRealCheck(result,realCheckId);
     }
+
     //从数据库中读取   已经提交 未 审核的  实名认证请求
     @RequestMapping("/unRealCheckedList.do")
     @ResponseBody
@@ -46,8 +46,8 @@ public class AdminController {
         int intPage = Integer.parseInt(page);
         int pageNum=0;
         if (intPage>0){
-             pageNum=intPage;
-         }
+            pageNum=intPage;
+        }
          List<RealCheckEntity> realCheckEntityList=realCheckService.unRealCheckedList(pageNum);
          return  ResponseUtil.responseSuccess(1,realCheckEntityList);
     }

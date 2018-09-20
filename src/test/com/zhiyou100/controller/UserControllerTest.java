@@ -35,10 +35,7 @@ public class UserControllerTest {
 
     @Autowired
     WebApplicationContext wac;
-
     MockMvc mockMvc;
-
-
     @Before
     public void setUp() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
@@ -77,14 +74,13 @@ public class UserControllerTest {
         Response response = new Gson().fromJson(responseString, Response.class);
         assertTrue(response.getCode() == 2);
         System.out.println(response);
-
     }
 
     @Test
     public void realCheck() throws Exception {
-        MockMultipartFile file1 = new MockMultipartFile("idCardPositive.jpeg", "do.jpeg", "image/jpeg", new FileInputStream("C:\\Users\\root\\Desktop\\images\\idCardPositive.jpeg"));
-        MockMultipartFile file2 = new MockMultipartFile("idCardNegative.jpeg", "do.jpeg", "image/jpeg", new FileInputStream("C:\\Users\\root\\Desktop\\images\\idCardNegative.jpeg"));
-        MockMultipartFile file3 = new MockMultipartFile("idCardHand.jpeg", "do.jpeg", "image/jpeg", new FileInputStream("C:\\Users\\root\\Desktop\\images\\idCardHand.jpeg"));
+        MockMultipartFile file1 = new MockMultipartFile("idCardPositive.jpeg", "do.jpeg", "image/jpeg", new FileInputStream(""));
+        MockMultipartFile file2 = new MockMultipartFile("idCardNegative.jpeg", "do.jpeg", "image/jpeg", new FileInputStream(""));
+        MockMultipartFile file3 = new MockMultipartFile("idCardHand.jpeg", "do.jpeg", "image/jpeg", new FileInputStream(""));
 
         MvcResult mvcResult = mockMvc
                 .perform(fileUpload("/user/realCheck.do")

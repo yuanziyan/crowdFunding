@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
     <!-- 全局参数 -->
     <settings>
         <!-- 使全局的映射器启用或禁用缓存。 -->
@@ -26,6 +27,10 @@
         <setting name="localCacheScope" value="SESSION"/>
         <!-- 设置但JDBC类型为空时,某些驱动程序 要指定值,default:OTHER，插入空值时不需要指定类型 -->
         <setting name="jdbcTypeForNull" value="NULL"/>
+        <!--打印日志-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="localCacheScope" value="STATEMENT"></setting>
+        <setting name="logImpl" value="SLF4J"></setting>
     </settings>
 
     <plugins>

@@ -49,27 +49,21 @@ public class UserController extends ExceptionController {
     OSSService ossService;
     @Autowired
     RealCheckService realCheckService;
-
-
     @ResponseBody
     @RequestMapping("/ex.do")
     public String ex() throws CrowdFundingException {
         throw new CrowdFundingException(2, "自定义异常");
-
     }
-
-
     @ResponseBody
     @RequestMapping("/verifyCode.do")
+    //短信发送验证码
     public String getVerifyCode(String phone, HttpServletRequest request) throws ClientException {
         if (StringUtils.isEmpty(phone)) {
             return ResponseUtil.responseError(1, "手机号不能为空");
         }
         String code = generateVerifyCode(4);
         //发送信息
-
         shortMessageService.sendVerifyCode(phone, code);
-
         //保存验证码
         request.getSession().setAttribute("code", code);
         //设置验证码时长
@@ -79,9 +73,9 @@ public class UserController extends ExceptionController {
         return ResponseUtil.responseSuccess(2, code);
 
     }
-
     @ResponseBody
     @RequestMapping("/checkVerifyCode.do")
+    //检查验证码
     public String checkVerifyCode(String code, String phone, String password, HttpServletRequest request, HttpServletResponse response) {
         //response.setContentType("text/html;charset=utf-8");
         //校验时长
@@ -107,11 +101,10 @@ public class UserController extends ExceptionController {
         } else {
             return ResponseUtil.responseError(1, "验证码错误");
         }
-
     }
-
     @ResponseBody
     @RequestMapping("/mail.do")
+    //发送邮件
     public String sendMail(String mailAddress) throws CrowdFundingException {
         if (StringUtils.isEmpty(mailAddress)) {
             return ResponseUtil.responseError(1, "邮件地址不能为空");
@@ -125,14 +118,14 @@ public class UserController extends ExceptionController {
 
     @ResponseBody
     @RequestMapping("/checkMail.do")
+    //检查邮件
     public String checkMail(String mailAddress) {
         if (StringUtils.isEmpty(mailAddress)) {
             return ResponseUtil.responseError(1, "邮件地址不能为空");
         }
         boolean flag = false;
         //todo 数据库查询
-        System.out.println("find db");
-        if (true) {
+            if (true) {
             //todo 修改数据ku状态
             return ResponseUtil.responseSuccess(2, "注册成功");
         } else {
@@ -141,7 +134,7 @@ public class UserController extends ExceptionController {
 
     }
 
-
+//生成邮件内容
     private String generateMailContent(String mailAddress) {
         String url = "http://localhost:8080/checkMail.do?mailAddress=";
         byte[] digest = DigestUtils.md5Digest(mailAddress.getBytes());
@@ -149,7 +142,7 @@ public class UserController extends ExceptionController {
         return url + md5Addr;
     }
 
-
+//生成验证码
     private String generateVerifyCode(int size) {
         StringBuilder builder = new StringBuilder();
         Random random = new Random();

@@ -36,6 +36,11 @@ public class RealCheckService {
         PageHelper.startPage(pageNum, 5);
         return realCheckDao.unRealCheckedList();
     }
+    public List<RealCheckEntity> unRealChecked(int pageNum) {
+        PageHelper.startPage(pageNum, 100);
+        return realCheckDao.unRealCheckedList();
+    }
+
 
     public void updateStatusById(int status, int realCheckId) {
         realCheckDao.updateStatusById(status, realCheckId);
@@ -49,11 +54,11 @@ public class RealCheckService {
         if (result.equals("success")) {
             status = 1;
             updateStatusById(status, realCheckId);
-            //给用户 发信息 /邮件   告知其是实名认证成功
             RealCheckEntity realCheckEntity = findById(realCheckId);
             //修改用户的状态  已经认证通过
             userService.realCheckPass(realCheckEntity.getPhone());
             String email = userService.findEmailByPhone(realCheckEntity.getPhone());
+            //给用户 发信息 /邮件   告知其是实名认证成功
             mailService.sendMail(email, "实名审核成功,您可以发布项目");
         }
         if (result.equals("failure")) {
