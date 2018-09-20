@@ -22,8 +22,8 @@ import java.util.Date;
 public class OSSService {
     String endpoint = "http://oss-cn-beijing.aliyuncs.com";
     // 云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建。
-    static final String accessKeyId = "LTAIyrDJ8IbGvsln";
-    static final String accessKeySecret = "hnSMoKj41dhGZd64WVmXmN3G3Iv2wc";
+    static final String accessKeyId = "LTAIkWvv20EHENlC";
+    static final String accessKeySecret = "g6eBP6UujJWKRUnJ9EuwXX3gTZk6ah";
 
     public String upload(String bucketName,String fileName,InputStream inputStream)  {
         // 创建OSSClient实例。

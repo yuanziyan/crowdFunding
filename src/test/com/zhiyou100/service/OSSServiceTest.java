@@ -20,10 +20,9 @@ public class OSSServiceTest {
     OSSService ossService;
     @Test
     public void upload() throws FileNotFoundException {
-        String url = ossService.upload("crowdfundingweb","123.txt",new FileInputStream(new File("d:\\test\\123.txt")));
-        System.out.println(url);
-
-
+        String url = ossService.upload("funding","lyf3.jpeg",new FileInputStream(new File("e:\\images\\3.jpeg")));
+        String ur2 = ossService.upload("funding","lyf4.jpeg",new FileInputStream(new File("e:\\images\\4.jpeg")));
+        String ur3 = ossService.upload("funding","lyf5.jpeg",new FileInputStream(new File("e:\\images\\5.jpeg")));
     }
     @Test
     public void download(){

@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Data
 public class Body {
-   private String confidence;
+   private Double confidence;
    private List<Integer> thresholds;
    private List<Integer> rectA;
    private List<Integer> rectB;

@@ -38,7 +38,6 @@ public class AdminController {
     public void manualRealCheck(String result,int realCheckId) throws CrowdFundingException {
         realCheckService.manualRealCheck(result,realCheckId);
     }
-
     //从数据库中读取   已经提交 未 审核的  实名认证请求
     @RequestMapping("/unRealCheckedList.do")
     @ResponseBody
@@ -51,6 +50,4 @@ public class AdminController {
          List<RealCheckEntity> realCheckEntityList=realCheckService.unRealCheckedList(pageNum);
          return  ResponseUtil.responseSuccess(1,realCheckEntityList);
     }
-
-
 }

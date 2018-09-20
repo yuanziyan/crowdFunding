@@ -58,7 +58,6 @@ public class FaceCompareService {
         String ak_secret = "g6eBP6UujJWKRUnJ9EuwXX3gTZk6ah"; // 用户ak_secret
         String url = "https://dtplus-cn-shanghai.data.aliyuncs.com/face/verify";
         String body="{\"type\":0,\"image_url_1\":\""+url1+"\",\"image_url_2\":\""+url2+"\"}";
-
         String s = null;
         try {
             s = sendPost(url, body, ak_id, ak_secret);
@@ -67,9 +66,8 @@ public class FaceCompareService {
         }
         Gson gson = new Gson();
         Body body1 = gson.fromJson(s, Body.class);
-        String confidence = body1.getConfidence();
-        double realConfidence= Double.parseDouble(confidence);
-        if (realConfidence>10){
+        Double confidence = body1.getConfidence();
+        if (confidence>60){
             return true;
         }else {
             return false;
